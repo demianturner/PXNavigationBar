@@ -16,7 +16,7 @@
 @property (nonatomic, copy) NSMutableArray *navigationLevels;
 @property (weak) id delegate;
 
-- (void)pushNavigationLevel:(PXNavigationLevel*)level;
+- (void)pushNavigationLevel:(PXNavigationLevel *)level;
 - (void)popNavigationLevel;
 
 - (PXNavigationLevel *)currentNavigationLevel;
@@ -29,11 +29,11 @@
 @protocol PXNavigationBarDelegate
 
 @optional
-- (BOOL)navigationBar:(PXNavigationBar*)aNavigationBar shouldPushLevel:(PXNavigationLevel*)aLevel;
-- (void)navigationBar:(PXNavigationBar*)aNavigationBar didPushLevel:(PXNavigationLevel*)aLevel;
+- (BOOL)navigationBar:(PXNavigationBar *)aNavigationBar shouldPushLevel:(PXNavigationLevel *)aLevel;
+- (void)navigationBar:(PXNavigationBar *)aNavigationBar didPushLevel:(PXNavigationLevel *)aLevel;
 
-- (BOOL)navigationBar:(PXNavigationBar*)aNavigationBar shouldPopLevel:(PXNavigationLevel*)aLevel;
-- (void)navigationBar:(PXNavigationBar*)aNavigationBar didPopLevel:(PXNavigationLevel*)aLevel;
+- (BOOL)navigationBar:(PXNavigationBar *)aNavigationBar shouldPopLevel:(PXNavigationLevel *)aLevel;
+- (void)navigationBar:(PXNavigationBar *)aNavigationBar didPopLevel:(PXNavigationLevel *)aLevel;
 
 @end
 

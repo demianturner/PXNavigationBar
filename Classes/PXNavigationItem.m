@@ -16,7 +16,7 @@
 
 - (id)initWithTitle:(NSString*)aTitle identifier:(NSString*)anIdentifier
 {
-	if(self=[super init]) {
+	if (self=[super init]) {
 		_title = [aTitle copy];
 		_identifier = [anIdentifier copy];
 	}

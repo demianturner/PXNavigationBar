@@ -147,7 +147,7 @@
 	PXNavigationLevel *level = [self currentNavigationLevel];
 	NSInteger newIndex;
 	
-	if ([sender tag]==LEFT_NAVBUTTON_VIEW_TAG) {
+	if ([sender tag] == LEFT_NAVBUTTON_VIEW_TAG) {
 		newIndex = [level currentItemIndex]-1;
 	}
 	else {
@@ -167,7 +167,7 @@
 	BOOL shouldPush = YES;
 	
 	//Ask the delegate if we can push
-	if([[self delegate] respondsToSelector:@selector(navigationBar:shouldPushLevel:)]) {
+	if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPushLevel:)]) {
 		shouldPush = [[self delegate] navigationBar:self shouldPushLevel:level];
 	}
 	
@@ -183,7 +183,7 @@
 		[self updateState];
 		
 		//Notify the delegate that we pushed
-		if([[self delegate] respondsToSelector:@selector(navigationBar:didPushLevel:)]) {
+		if ([[self delegate] respondsToSelector:@selector(navigationBar:didPushLevel:)]) {
 			[[self delegate] navigationBar:self didPushLevel:level];
 		}
 	}
@@ -216,7 +216,7 @@
 	}
 }
 
-- (void)setLevels:(NSArray*)levels
+- (void)setLevels:(NSArray *)levels
 {
 	if (levels!=_navigationLevels) {
 		_navigationLevels = [levels mutableCopy];
@@ -225,17 +225,17 @@
 	}
 }
 
-- (PXNavigationLevel*)currentNavigationLevel
+- (PXNavigationLevel *)currentNavigationLevel
 {
 	return [_navigationLevels lastObject];
 }
 
-- (PXNavigationItem*)currentNavigationItem
+- (PXNavigationItem *)currentNavigationItem
 {
 	return [[self currentNavigationLevel] currentItem];
 }
 
-- (PXNavigationLevel*)parentLevel
+- (PXNavigationLevel *)parentLevel
 {
 	if ([_navigationLevels count]<=1) {
 		return nil;
@@ -245,7 +245,7 @@
 	}
 }
 
-- (PXNavigationItem*)parentItem
+- (PXNavigationItem *)parentItem
 {
 	//If there is no parent level then -parentLevel will return nil anyway
 	return [[self parentLevel] currentItem];
@@ -259,7 +259,7 @@
 	NSButton *rightNavButton = [self viewWithTag:RIGHT_NAVBUTTON_VIEW_TAG];
 	
 	//Show or hide the back button, depending on whether we are at the "top" of the hierarchy or not
-	if (parent!=nil) {
+	if (parent != nil) {
 		[backButton setHidden:NO];
 		[backButton setTitle:[parent title]];
 	}
@@ -269,7 +269,7 @@
 	
 	NSArray *items = [[self currentNavigationLevel] items];
 	
-	if([items count]<=1) {
+	if ([items count]<=1) {
 		[leftNavButton setHidden:YES];
 		[rightNavButton setHidden:YES];
 	}
