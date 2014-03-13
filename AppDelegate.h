@@ -7,13 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PXNavigationBar.h"
 
-@class PXNavigationBar;
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet NSWindow *window;
-	IBOutlet PXNavigationBar *navigationBar;
-}
+@property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet PXNavigationBar *navigationBar;
 
 - (IBAction)pushLevel:(id)sender;
 

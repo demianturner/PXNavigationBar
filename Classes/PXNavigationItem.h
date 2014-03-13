@@ -8,16 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PXNavigationItem : NSObject {
-	NSString *_title;
-	NSString *_identifier;
-}
+@interface PXNavigationItem : NSObject
 
 @property (copy) NSString *title;
 @property (copy) NSString *identifier;
 
-- (id)initWithTitle:(NSString*)aTitle identifier:(NSString*)anIdentifier;	//Designated initializer
-+ (id)itemWithTitle:(NSString*)aTitle;
-+ (id)itemWithTitle:(NSString*)aTitle identifier:(NSString*)anIdentifier;
+- (id)initWithTitle:(NSString *)aTitle identifier:(NSString*)anIdentifier;	//Designated initializer
++ (id)itemWithTitle:(NSString *)aTitle;
++ (id)itemWithTitle:(NSString *)aTitle identifier:(NSString*)anIdentifier;
 
 @end

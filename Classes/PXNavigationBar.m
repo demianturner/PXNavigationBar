@@ -7,10 +7,6 @@
 //
 
 #import "PXNavigationBar.h"
-
-#import "PXNavigationLevel.h"
-#import "PXNavigationItem.h"
-
 #import "PXNavigationButtonCell.h"
 #import "PXBackButtonCell.h"
 
@@ -32,7 +28,7 @@
 
 @interface PXNavigationBar ()
 
-- (NSButton*)navButtonWithDirection:(NSInteger)direction;
+- (NSButton *)navButtonWithDirection:(NSInteger)direction;
 - (void)adjustSubviews;
 - (void)updateState;
 
@@ -45,36 +41,26 @@
 
 @implementation PXNavigationBar
 
-@synthesize navigationLevels;
-@synthesize delegate;
-
 #pragma mark Init/Dealloc
 
 - (id)initWithFrame:(NSRect)frameRect
 {
-	if(self=[super initWithFrame:frameRect]) {
-		_navigationLevels = [[NSMutableArray alloc] init];
+	if (self = [super initWithFrame:frameRect]) {
+        _navigationLevels = [[NSMutableArray alloc] init];
 	}
 	
 	return self;
 }
 
-- (void)dealloc
-{
-	[_navigationLevels release], _navigationLevels=nil;
-	
-	[super dealloc];
-}
-
 - (void)awakeFromNib
 {	
-	if([super respondsToSelector:@selector(awakeFromNib)]) {
+	if ([super respondsToSelector:@selector(awakeFromNib)]) {
 		[super awakeFromNib];
 	}
 	
 	//Create the buttons
 	NSButton *backButton = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 50)];
-	[backButton setCell:[[[PXBackButtonCell alloc] init] autorelease]];
+	[backButton setCell:[[PXBackButtonCell alloc] init]];
 	[backButton setBezelStyle:NSRoundedBezelStyle];
 	[backButton setTag:BACKBUTTON_VIEW_TAG];
 	[backButton setTarget:self];
@@ -93,15 +79,14 @@
 	[self updateState];
 }
 
-- (NSButton*)navButtonWithDirection:(NSInteger)direction
+- (NSButton *)navButtonWithDirection:(NSInteger)direction
 {
-	NSButton *navButton = [[[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 50)] autorelease];
+	NSButton *navButton = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 50)];
 	PXNavigationButtonCell *cell = [[PXNavigationButtonCell alloc] initTextCell:@""];
 	[navButton setCell:cell];
-	[cell release];
 	[[navButton cell] setNavDirection:direction];
 	
-	if(direction==PXNavigationButtonCellNavDirectionRight) {
+	if (direction==PXNavigationButtonCellNavDirectionRight) {
 		[navButton setTag:RIGHT_NAVBUTTON_VIEW_TAG];
 		[navButton setImage:[NSImage imageNamed:@"NavButtonRightArrow"]];
 	}
@@ -129,9 +114,9 @@
 {
 	NSRect bounds = [self bounds];
 	
-	NSButton *backButton = (NSButton*)[self viewWithTag:BACKBUTTON_VIEW_TAG];
-	NSButton *leftNavButton = (NSButton*)[self viewWithTag:LEFT_NAVBUTTON_VIEW_TAG];
-	NSButton *rightNavButton = (NSButton*)[self viewWithTag:RIGHT_NAVBUTTON_VIEW_TAG];
+	NSButton *backButton = (NSButton *)[self viewWithTag:BACKBUTTON_VIEW_TAG];
+	NSButton *leftNavButton = (NSButton *)[self viewWithTag:LEFT_NAVBUTTON_VIEW_TAG];
+	NSButton *rightNavButton = (NSButton *)[self viewWithTag:RIGHT_NAVBUTTON_VIEW_TAG];
 	
 	NSSize minBackButtonSize = [[backButton cell] cellSize];
 	
@@ -162,7 +147,7 @@
 	PXNavigationLevel *level = [self currentNavigationLevel];
 	NSInteger newIndex;
 	
-	if([sender tag]==LEFT_NAVBUTTON_VIEW_TAG) {
+	if ([sender tag]==LEFT_NAVBUTTON_VIEW_TAG) {
 		newIndex = [level currentItemIndex]-1;
 	}
 	else {
@@ -186,7 +171,7 @@
 		shouldPush = [[self delegate] navigationBar:self shouldPushLevel:level];
 	}
 	
-	if(shouldPush)
+	if (shouldPush)
 	{
 		//Ordinarily we wouldn't _want_ to copy the represented object over because a copy of the level should be
 		//a new level in itself, if the represented object is being used as an identifier. However we are copying
@@ -210,31 +195,30 @@
 	PXNavigationLevel *lastLevel = [_navigationLevels lastObject];
 	
 	//Make sure this is not the root level
-	if([_navigationLevels count]==1) {
+	if ([_navigationLevels count]==1) {
 		return;
 	}
 	
 	//Ask the delegate if we can pop
-	if([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopLevel:)]) {
+	if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopLevel:)]) {
 		shouldPop = [[self delegate] navigationBar:self shouldPopLevel:lastLevel];
 	}
 	
-	if(shouldPop)
+	if (shouldPop)
 	{
 		[_navigationLevels removeLastObject];
 		[self updateState];
 		
 		//Notify the delegate that we popped
-		if([[self delegate] respondsToSelector:@selector(navigationBar:didPopLevel:)]) {
-			[[self delegate] navigationBar:self didPopLevel:[lastLevel autorelease]];
+		if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopLevel:)]) {
+			[[self delegate] navigationBar:self didPopLevel:lastLevel];
 		}
 	}
 }
 
 - (void)setLevels:(NSArray*)levels
 {
-	if(levels!=_navigationLevels) {
-		[_navigationLevels release];
+	if (levels!=_navigationLevels) {
 		_navigationLevels = [levels mutableCopy];
 		
 		[self updateState];
@@ -253,7 +237,7 @@
 
 - (PXNavigationLevel*)parentLevel
 {
-	if([_navigationLevels count]<=1) {
+	if ([_navigationLevels count]<=1) {
 		return nil;
 	}
 	else {
@@ -275,7 +259,7 @@
 	NSButton *rightNavButton = [self viewWithTag:RIGHT_NAVBUTTON_VIEW_TAG];
 	
 	//Show or hide the back button, depending on whether we are at the "top" of the hierarchy or not
-	if(parent!=nil) {
+	if (parent!=nil) {
 		[backButton setHidden:NO];
 		[backButton setTitle:[parent title]];
 	}
@@ -295,14 +279,14 @@
 		
 		PXNavigationItem *currentItem = [self currentNavigationItem];
 		
-		if([items indexOfObject:currentItem]==0) {
+		if ([items indexOfObject:currentItem]==0) {
 			[leftNavButton setEnabled:NO];
 		}
 		else {
 			[leftNavButton setEnabled:YES];
 		}
 		
-		if([items indexOfObject:currentItem]==([items count]-1)) {
+		if ([items indexOfObject:currentItem]==([items count]-1)) {
 			[rightNavButton setEnabled:NO];
 		}
 		else {
@@ -336,7 +320,7 @@
 	//Draw the title of the current item
 	PXNavigationItem *item = [self currentNavigationItem];
 	
-	if(item!=nil&&[item title]!=nil) {
+	if (item != nil && [item title] != nil) {
 		NSString *title = [item title];
 		
 		NSShadow *textShadow = [[NSShadow alloc] init];
@@ -345,7 +329,6 @@
 		
 		NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:TITLE_FONT, NSFontAttributeName, 
 									textShadow, NSShadowAttributeName, nil];
-		[textShadow release];
 		NSAttributedString *attrTitle = [[NSAttributedString alloc] initWithString:title attributes:attributes];
 		
 		//TODO: constrain to the available width between the back button and nav buttons

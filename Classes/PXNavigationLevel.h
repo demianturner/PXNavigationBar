@@ -10,22 +10,17 @@
 
 @class PXNavigationItem;
 
-@interface PXNavigationLevel : NSObject <NSCopying> {
-	NSMutableArray *_items;
-	PXNavigationItem *_currentItem;
-	
-	id _representedObject;
-}
+@interface PXNavigationLevel : NSObject <NSCopying>
 
-@property (readonly) NSArray *items;
-@property (readwrite, assign) PXNavigationItem *currentItem;
-@property (readwrite) NSInteger currentItemIndex;
-@property (assign) id representedObject;
+@property (nonatomic, copy) NSArray *items;
+@property (nonatomic, strong) PXNavigationItem *currentItem;
+@property (nonatomic, assign) NSInteger currentItemIndex;
+@property (weak) id representedObject;
 
-- (id)initWithItems:(NSArray*)itemArray;			//Designated initializer
-- (id)initWithItem:(PXNavigationItem*)item;
-+ (id)navigationLevelWithItems:(NSArray*)itemArray;	//Convenience initializer
+- (id)initWithItems:(NSArray *)itemArray;			//Designated initializer
+- (id)initWithItem:(PXNavigationItem *)item;
++ (id)navigationLevelWithItems:(NSArray *)itemArray;	//Convenience initializer
 
-- (void)setCurrentItem:(PXNavigationItem*)item;
+- (void)setCurrentItem:(PXNavigationItem *)item;
 
 @end

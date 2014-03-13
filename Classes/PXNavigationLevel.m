@@ -15,10 +15,6 @@
 
 @implementation PXNavigationLevel
 
-@synthesize items = _items;
-@synthesize currentItem = _currentItem;
-@synthesize representedObject = _representedObject;
-
 #pragma mark -
 #pragma mark Init/Dealloc
 
@@ -39,15 +35,7 @@
 
 + (id)navigationLevelWithItems:(NSArray*)itemArray
 {
-	return [[[[self class] alloc] initWithItems:nil] autorelease];
-}
-
-- (void)dealloc
-{
-	[_items release], _items = nil;
-	_currentItem = nil;
-	
-	[super dealloc];
+	return [[[self class] alloc] initWithItems:nil];
 }
 
 #pragma mark -
@@ -55,7 +43,7 @@
 
 - (void)setItems:(NSArray *)newItems
 {
-	if(newItems!=_items) {
+	if (newItems!=_items) {
 		//-setItems: is only used internally so we don't need to do a -mutableCopy
 		_items = [newItems copy];
 	}
@@ -64,9 +52,14 @@
 #pragma mark -
 #pragma mark Item Handling
 
+//- (PXNavigationItem *)currentItem
+//{
+//    return _currentItem;
+//}
+
 - (void)setCurrentItem:(PXNavigationItem*)item
 {
-	if([_items containsObject:item]) {
+	if ([_items containsObject:item]) {
 		_currentItem = item;
 	}
 }
@@ -93,7 +86,6 @@
 	NSArray *newItems = [[self items] copy];
 	[newLevel setItems:newItems];
 	[newLevel setCurrentItem:[self currentItem]];
-	[newItems release];
 	
 	return newLevel;
 }

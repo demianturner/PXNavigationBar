@@ -13,9 +13,8 @@ typedef enum {
 	PXNavigationButtonCellNavDirectionRight
 } PXNavigationButtonCellNavDirection;
 
-@interface PXNavigationButtonCell : NSButtonCell {
-}
+@interface PXNavigationButtonCell : NSButtonCell
 
-@property (readwrite) NSInteger navDirection;
+@property (nonatomic, assign) NSInteger navDirection;
 
 @end

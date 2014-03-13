@@ -11,8 +11,6 @@
 
 @implementation PXNavigationButtonCell
 
-@synthesize navDirection;
-
 #pragma mark -
 #pragma mark Drawing
 
@@ -20,8 +18,8 @@
 {
 	NSImage *buttonImage;
 	
-	if(navDirection==PXNavigationButtonCellNavDirectionLeft) {
-		if([self isHighlighted]) {
+	if (self.navDirection == PXNavigationButtonCellNavDirectionLeft) {
+		if ([self isHighlighted]) {
 			buttonImage = [NSImage imageNamed:@"LeftNavButtonPressed"];
 		}
 		else {
@@ -29,7 +27,7 @@
 		}
 	}
 	else {
-		if([self isHighlighted]) {
+		if ([self isHighlighted]) {
 			buttonImage = [NSImage imageNamed:@"RightNavButtonPressed"];
 		}
 		else {

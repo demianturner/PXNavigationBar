@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 
-#import "PXNavigationBar.h"
-
 @implementation AppDelegate
 
 - (void)awakeFromNib
@@ -17,7 +15,7 @@
 	PXNavigationItem *item = [PXNavigationItem itemWithTitle:@"Root"];
 	PXNavigationLevel *rootLevel = [[PXNavigationLevel alloc] initWithItem:item];
 	
-	[navigationBar pushNavigationLevel:rootLevel];
+	[_navigationBar pushNavigationLevel:rootLevel];
 }
 
 /* This method is simply to demonstrate pushing a level to the navigation hierarchy
@@ -26,16 +24,17 @@
 {
 	
 	//Set up the navigation level
-	NSArray *itemArray = [NSArray arrayWithObjects:[PXNavigationItem itemWithTitle:@"Item 1"],
+	NSArray *itemArray = @[
+                          [PXNavigationItem itemWithTitle:@"Item 1"],
 						  [PXNavigationItem itemWithTitle:@"Item 2"],
 						  [PXNavigationItem itemWithTitle:@"Item 3"],
-						  [PXNavigationItem itemWithTitle:@"Item 4"], nil];
+						  [PXNavigationItem itemWithTitle:@"Item 4"]];
 	PXNavigationLevel *level = [[PXNavigationLevel alloc] initWithItems:itemArray];
 	
 	//Set the selected item to a random index
 	[level setCurrentItemIndex:random()%4];
 	
-	[navigationBar pushNavigationLevel:level];
+	[_navigationBar pushNavigationLevel:level];
 }
 
 @end

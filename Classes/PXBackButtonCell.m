@@ -38,16 +38,16 @@
 #pragma mark -
 #pragma mark Drawing
 
-- (NSAttributedString*)attributedTitle
+- (NSAttributedString *)attributedTitle
 {
-	NSShadow *textShadow = [[[NSShadow alloc] init] autorelease];
+	NSShadow *textShadow = [[NSShadow alloc] init];
 	[textShadow setShadowColor:[NSColor whiteColor]];
 	[textShadow setShadowOffset:NSMakeSize(0, -1)];
 	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:BUTTON_FONT, NSFontAttributeName,
 								textShadow, NSShadowAttributeName, nil];
 	
-	NSAttributedString *string = [[[NSAttributedString alloc] initWithString:[self title]
-																  attributes:attributes] autorelease];
+	NSAttributedString *string = [[NSAttributedString alloc] initWithString:[self title]
+																  attributes:attributes];
 	
 	return string;
 }

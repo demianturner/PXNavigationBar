@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PXBackButtonCell : NSButtonCell {
-	
-}
+@interface PXBackButtonCell : NSButtonCell
 
 @end

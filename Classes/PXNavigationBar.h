@@ -11,22 +11,18 @@
 #import "PXNavigationLevel.h"
 #import "PXNavigationItem.h"
 
-@interface PXNavigationBar : NSView {
-	NSMutableArray *_navigationLevels;
-	
-	id _delegate;
-}
+@interface PXNavigationBar : NSView
 
-@property (retain) NSArray *navigationLevels;
-@property (assign) id delegate;
+@property (nonatomic, copy) NSMutableArray *navigationLevels;
+@property (weak) id delegate;
 
 - (void)pushNavigationLevel:(PXNavigationLevel*)level;
 - (void)popNavigationLevel;
 
-- (PXNavigationLevel*)currentNavigationLevel;
-- (PXNavigationItem*)currentNavigationItem;
-- (PXNavigationLevel*)parentLevel;
-- (PXNavigationItem*)parentItem;
+- (PXNavigationLevel *)currentNavigationLevel;
+- (PXNavigationItem *)currentNavigationItem;
+- (PXNavigationLevel *)parentLevel;
+- (PXNavigationItem *)parentItem;
 
 @end
 

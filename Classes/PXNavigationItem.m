@@ -11,9 +11,6 @@
 
 @implementation PXNavigationItem
 
-@synthesize title = _title;
-@synthesize identifier = _identifier;
-
 #pragma mark -
 #pragma mark Init/Dealloc
 
@@ -29,20 +26,13 @@
 
 + (id)itemWithTitle:(NSString*)aTitle
 {
-	return [[[[self class] alloc] initWithTitle:aTitle identifier:@""] autorelease];
+	return [[[self class] alloc] initWithTitle:aTitle identifier:@""];
 }
 
 + (id)itemWithTitle:(NSString*)aTitle identifier:(NSString*)anIdentifier
 {
-	return [[[[self class] alloc] initWithTitle:aTitle identifier:anIdentifier] autorelease];
+	return [[[self class] alloc] initWithTitle:aTitle identifier:anIdentifier];
 }
 
-- (void)dealloc
-{
-	[_title release];
-	[_identifier release];
-	
-	[super dealloc];
-}
 
 @end
