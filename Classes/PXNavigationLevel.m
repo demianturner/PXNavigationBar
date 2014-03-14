@@ -9,7 +9,7 @@
 #import "PXNavigationLevel.h"
 
 @interface PXNavigationLevel ()
-- (void)setItems:(NSArray*)newItems;
+- (void)setItems:(NSArray *)newItems;
 @end
 
 
@@ -18,9 +18,9 @@
 #pragma mark -
 #pragma mark Init/Dealloc
 
-- (id)initWithItems:(NSArray*)itemArray
+- (id)initWithItems:(NSArray *)itemArray
 {
-	if(self=[super init]) {
+	if (self=[super init]) {
 		_items = [itemArray mutableCopy];
 		_currentItem = [itemArray objectAtIndex:0];
 	}
@@ -28,12 +28,12 @@
 	return self;
 }
 
-- (id)initWithItem:(PXNavigationItem*)item
+- (id)initWithItem:(PXNavigationItem *)item
 {	
 	return [self initWithItems:[NSArray arrayWithObject:item]];
 }
 
-+ (id)navigationLevelWithItems:(NSArray*)itemArray
++ (id)navigationLevelWithItems:(NSArray *)itemArray
 {
 	return [[[self class] alloc] initWithItems:nil];
 }
@@ -43,7 +43,7 @@
 
 - (void)setItems:(NSArray *)newItems
 {
-	if (newItems!=_items) {
+	if (newItems != _items) {
 		//-setItems: is only used internally so we don't need to do a -mutableCopy
 		_items = [newItems copy];
 	}
@@ -57,7 +57,7 @@
 //    return _currentItem;
 //}
 
-- (void)setCurrentItem:(PXNavigationItem*)item
+- (void)setCurrentItem:(PXNavigationItem *)item
 {
 	if ([_items containsObject:item]) {
 		_currentItem = item;
@@ -71,7 +71,7 @@
 
 - (void)setCurrentItemIndex:(NSInteger)index
 {
-	if(index>=0&&index<=([_items count]-1)) {
+	if (index >= 0 && index <= ([_items count]-1)) {
 		_currentItem = [_items objectAtIndex:index];
 	}
 }

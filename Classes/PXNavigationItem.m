@@ -14,7 +14,7 @@
 #pragma mark -
 #pragma mark Init/Dealloc
 
-- (id)initWithTitle:(NSString*)aTitle identifier:(NSString*)anIdentifier
+- (id)initWithTitle:(NSString *)aTitle identifier:(NSString*)anIdentifier
 {
 	if (self=[super init]) {
 		_title = [aTitle copy];
@@ -24,12 +24,12 @@
 	return self;
 }
 
-+ (id)itemWithTitle:(NSString*)aTitle
++ (id)itemWithTitle:(NSString *)aTitle
 {
 	return [[[self class] alloc] initWithTitle:aTitle identifier:@""];
 }
 
-+ (id)itemWithTitle:(NSString*)aTitle identifier:(NSString*)anIdentifier
++ (id)itemWithTitle:(NSString *)aTitle identifier:(NSString*)anIdentifier
 {
 	return [[[self class] alloc] initWithTitle:aTitle identifier:anIdentifier];
 }
